@@ -11,7 +11,7 @@ startButton.addEventListener("click", (e) => {
         loginErrorMsg.style.opacity = 1;
     } else {
         loginErrorMsg.style.opacity = 0;
-        const link = `vis.html?name=${name}&age=${age}`;
+        const link = `/vis.html?name=${name}&age=${age}`;
         window.location.replace(link)
     }
 })

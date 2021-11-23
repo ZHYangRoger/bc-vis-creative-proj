@@ -18,6 +18,17 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="StartPage.js"></script>
     <script src="firstChart.js" defer type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
+    <script defer src="thirdChart.js" defer type="module"></script>
+
+    <style media="screen">
+      /* Add space between Vega-Embed links  */
+      .vega-actions a {
+        margin-right: 5px;
+      }
+    </style>
   </head>
 
 <body>
@@ -25,16 +36,16 @@
     <header id="showcase">
         <h1>Hi <span id="result-name"></span>, welcome to the world of inflation</h1>
         <p>Your age is <span id="result-age"></span>, and you were born in <span id="result-year"></span>.</p>
-        <a href="index.html" class="button">Wrong input? Reenter your info</a>
+        <a href="index.html" class="button">Wrong input? Re-enter your info</a>
       </header>
 
   </div>
-  <dic class="section section-features">
-    <section id="section-a">
+  <div class="section section-features">
+    <!-- <section id="section-a">
         <h1>Since you were born:</h1>
-      </section>
+      </section> -->
     
-      <section id="section-c">
+      <!-- <section id="section-c">
         <div class="box-1">
           <h2>The housing price has been up for <a1></a1> %</h2>
         </div>
@@ -47,12 +58,129 @@
         <div class="box-4">
           <h2>The pork price has been up for <a4></a4> %</h2>
         </div>
-      </section> <br><br>
+      </section> <br><br> -->
 
-      <h2>Inflation during your own lifetime</h2>
-      <div class="chart-container1"></div>
+      <h1 class="title">Since you were born...</h1>
+      <p class="features" style="font-weight: 700; max-width: 800px;">
+        The housing price has been up for <a1 class="bigFont"></a1> %. The gas price has been up for <a2 class="bigFont"></a2> %. The beef price has been up for <a3 class="bigFont"></a3> %. The pork price has been up for <a4 class="bigFont"></a4> %.
+    </p>
 
-  </dic>
+      <!-- <h2 class="features">Inflation during your own lifetime</h2>
+      <div class="chart-container1"></div> -->
+
+  </div>
+  <div class="section section-features">
+    <h2 class="features">Find out how inflation has been from 1970 to 2021</h2>
+    <!-- <p class="features" style="padding-top: 0px;">(Assuming your parents are 30 years older than you)</p> -->
+
+    <div id="vis"></div>
+
+    <script>
+        const spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "data": {
+        "url": "https://raw.githubusercontent.com/WilliamCWu/VisLab1/main/projdata.csv"
+      },
+      "background": "rgb(242, 243, 245)",
+      "group": {fill: "rgb(242, 243, 245)"},
+      "repeat": {"layer": ["PctBeef", "PctPork", "PctGas", "PctHome"]},
+      "spec": {
+        "width": 900,
+        "height": 500,
+        "mark": "line",
+        "encoding": {
+          "tooltip": [
+            {"field": "Date", "type": "temporal", "title": "Date"},
+            {
+              "field": {"repeat": "layer"},
+              "type": "quantitative",
+              "title": "% change"
+            }
+          ],
+          "x": {"field": "Date", "type": "temporal"},
+          "y": {
+            "field": {"repeat": "layer"},
+            "title": "Percent change",
+            "type": "quantitative"
+          },
+          "color": {
+              "datum": {"repeat": "layer"}, 
+              "type": "nominal",
+              "legend": {"labelExpr": "{'PctBeef': 'percent change in Beef price', 'PctPork': 'percent change in Pork price', 'PctGas': 'percent change in Gas price', 'PctHome': 'price change in Home price'}[datum.label]"}
+            }
+        }
+      },
+      "config": {}
+    };
+        vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
+      </script>
+
+  </div>
+  <div class="section section-features">
+    <div class="container">
+        <h2 class="features" style="padding-bottom: 0px;">
+          Let's see how much the average people's income changed compared to prices
+        </h2>
+        <p class="features" style="padding-bottom: 0px; padding-top: 0px;">(Yellow line is middle 20 percent income, green line is lower 20 percent income)</p>
+        <div
+          id="vis2"
+          style="display: flex;
+    justify-content: center;
+    align-items: center;">
+    </div>
+    <script>
+        // Assign the specification to a local variable vlSpec.
+        var vlSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/WilliamCWu/VisLab1/main/projdata.csv"
+    },
+    "background": "rgb(242, 243, 245)",
+      "group": {fill: "rgb(242, 243, 245)"},
+    "repeat": {
+      "layer": ["PctBeef", "PctPork", "PctGas", "PctHome","PctChInL","PctChInM"]
+    },
+    "spec": {
+      "width": 900,
+      "height": 500,
+      "mark": "line",
+      "encoding": {
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Date"},
+          {"field": {"repeat": "layer"}, "type": "quantitative", "title": "% change"}
+        ],
+        "x": {"field": "Date", "type": "temporal"},
+        "y": {"field": {"repeat": "layer"}, "title": "Percent change", "type": "quantitative"},
+        "color": {
+            "datum": {"repeat": "layer"},
+          
+          "type": "nominal",
+          "legend": {"labelExpr": "{'PctBeef': 'percent change in Beef price', 'PctPork': 'percent change in Pork price', 'PctGas': 'percent change in Gas price', 'PctHome': 'price change in Home price','PctChInL':'change in Lowest 20% Income','PctChInM':'change in Middle 20% Income'}[datum.label]"}
+        },
+        "opacity":{
+           "datum": {"repeat": "layer"},
+           "scale":{"domain": ["PctBeef", "PctPork", "PctGas", "PctHome","PctChInL","PctChInM"],"range":["0.1","1"]},
+           "legend":null
+        },
+        "strokeWidth":{"datum": {"repeat": "layer"},
+           "scale":{"domain": ["PctBeef", "PctPork", "PctGas", "PctHome","PctChInL","PctChInM"],"range":["1","4.5"]},
+           "legend":null}
+      }
+      
+    }
+};
+  
+        // Embed the visualization in the container with id `vis`
+        vegaEmbed("#vis2", vlSpec);
+      </script> <br><br>
+
+      <h2 class="features">
+        Now let's compare the historical savings rate to the inflation rates! 
+      </h2>
+    <div class='schart'>
+
+  </div>
+
     <footer class="footer">
       <p>&copy; Zihui Yang, Yilin Wu, Jinghong He, Sharon Yang</p>
     </footer>

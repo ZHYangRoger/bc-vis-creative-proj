@@ -661,7 +661,7 @@ button {
 
 .button {
     -webkit-box-shadow: 0 20px 30px -10px rgba(54, 54, 54, 0.6);
-    box-shadow: 0 20px 30px -10px rgba(54, 54, 54, 0.6);
+    box-shadow: 0 10px 20px -5px rgba(54, 54, 54, 0.6);
     padding: 12px 30px 10px;
     letter-spacing: -0.5px;
     display: inline-block;
@@ -698,7 +698,6 @@ button {
 .button:before {
     -webkit-animation: pulse 2s ease infinite;
     animation: pulse 2s ease infinite;
-    background: rgba(54, 54, 54, 0.4);
     border-radius: 100px;
     position: absolute;
     content: "";
@@ -723,40 +722,6 @@ button {
 .button.white:hover {
     -webkit-box-shadow: 0 30px 40px -10px rgba(34, 34, 34, 0.4);
     box-shadow: 0 30px 40px -10px rgba(34, 34, 34, 0.4)
-}
-
-@-webkit-keyframes pulse {
-    0% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-
-    50% {
-        opacity: 0.2
-    }
-
-    100% {
-        -webkit-transform: scale(1.2, 1.4);
-        transform: scale(1.2, 1.4);
-        opacity: 0
-    }
-}
-
-@keyframes pulse {
-    0% {
-        -webkit-transform: scale(1);
-        transform: scale(1)
-    }
-
-    50% {
-        opacity: 0.2
-    }
-
-    100% {
-        -webkit-transform: scale(1.2, 1.4);
-        transform: scale(1.2, 1.4);
-        opacity: 0
-    }
 }
 
 .shift {
@@ -1080,7 +1045,13 @@ button {
 }
 
 .features {
-    padding: 80px 0 100px;
+    padding: 40px 0 50px;
+    position: relative;
+    overflow: hidden;
+    width: 100%
+}
+
+.features-no-btm{
     position: relative;
     overflow: hidden;
     width: 100%
@@ -1123,6 +1094,46 @@ button {
 }
 
 .features .overlay-bottom {
+    bottom: -1px
+}
+
+.features-no-btm .row {
+    white-space: nowrap;
+    margin: 4px 0
+}
+
+.features-no-btm .feature {
+    -webkit-box-shadow: 0 20px 30px -10px rgba(34, 34, 34, 0.1);
+    box-shadow: 0 20px 30px -10px rgba(34, 34, 34, 0.1);
+    padding: 20px 26px 16px 24px;
+    border-radius: 4px;
+    background: #fff;
+    margin: 10px
+}
+
+.features-no-btm .feature .icon {
+    margin-right: 8px
+}
+
+.features-no-btm .donts .icon {
+    color: #B2B2B2
+}
+
+.features-no-btm .dos .icon {
+    color: #000000;
+}
+
+.features-no-btm .donts {
+    -webkit-animation: scrollLeft 80s linear infinite;
+    animation: scrollLeft 80s linear infinite
+}
+
+.features-no-btm .dos {
+    -webkit-animation: scrollRight 80s linear infinite;
+    animation: scrollRight 80s linear infinite
+}
+
+.features-no-btm .overlay-bottom {
     bottom: -1px
 }
 
@@ -1247,6 +1258,39 @@ button {
     }
 
     .features .row {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch
+    }
+
+    .features-no-btm {
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+        margin: 20px auto 0;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        padding: 40px 0;
+        height: 300px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 90%
+    }
+
+    .features-no-btm .feature {
+        padding: 10px 12px 8px;
+        text-align: left;
+        font-size: 12px;
+        margin: 6px 0
+    }
+
+    .features-no-btm .row {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -2017,18 +2061,18 @@ a:hover {
         }
         
         #showcase .button{
+        background-color: white;
         font-size:18px;
         text-decoration:none;
-        color:#926239;
-        border:#926239 1px solid;
         padding:10px 20px;
         border-radius:10px;
         margin-top:20px;
+        color: #000000;
         }
         
         #showcase .button:hover{
-        background:#926239;
         color:#fff;
+        color: #000000;
         }
 
 
@@ -2061,3 +2105,7 @@ a:hover {
             #section-c .box-2, #section-c .box-4{
             background:#f9f9f9;
             }
+
+.bigFont{
+    font-size: 45px;
+}

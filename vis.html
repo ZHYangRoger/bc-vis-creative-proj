@@ -78,7 +78,7 @@
 
   </div>
   <div class="section section-features features">
-    <h2 class="features">Find out how inflation has been from 1970 to 2021</h2>
+    <h2 class="features">Take an overview: find out how inflation has been from 1970 to 2021</h2>
     <!-- <p class="features" style="padding-top: 0px;">(Assuming your parents are 30 years older than you)</p> -->
 
     <div id="vis"></div>
@@ -122,6 +122,20 @@
     };
         vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
       </script>
+      <p style="padding-left: 150px; padding-right:150px">
+        <!-- First graph -->
+        As the years go by, starting from 1970, the prices of various commodities are bound to change in 
+        price. Here, we look at the percent change of the price of beef, pork, gas, and houses in America. 
+        Each with their own respective colors, we can clearly see that houses have had the largest 
+        percent change compared to the other three commodities. In addition, gas prices are the least 
+        consistent, and pork price percent change has remained the most stable out of the four.
+    </p> <br>
+    <p style="color: rgb(27, 114, 212); font-weight: bold; padding-left: 150px; padding-right:150px">
+      The instability of the prices we see after 2008 may have been the result of the 2008 financial crisis, which was 
+            followed by the Great Recession, and it had heavy, negative impacts on the gas and oil prices.
+            Pork price percent change has remained the most stable out of the four, and beef has had a 
+            relatively smooth increase.
+    </p>
 
   </div>
   <div class="section section-features features">
@@ -183,15 +197,77 @@
         vegaEmbed("#vis2", vlSpec);
       </script> <br><br>
 </div>
+<p style="padding-left: 150px; padding-right:150px">
+  <!-- Second graph -->
+  Similar to the above graph, this graph shows the price percent change for the four commodities, 
+  however there are two new lines. The yellow line represents the middle 20% income, and the green 
+  line represents the lower 20% income. With the combination of all of these lines, it is easy to 
+  see how income clearly is unable to keep up with the price changes of homes in America. In fact, 
+  both the middle and lower 20% income fall remain lower than houses starting around 1980. Around 
+  this time, the United States had a significant population increase since 1970 (according 
+  to the 1980 census), which may have contributed to the low income percent change.
+</p> <br>
+<p style="color: rgb(27, 114, 212); font-weight: bold; padding-left: 150px; padding-right:150px">
+  Around 
+  this time, the United States had a significant population increase since 1970 (according 
+  to the 1980 census), which may have contributed to the low income percent change. However, there 
+  is a (slow) general income increase throughout the years <i>after</i> the Great Recession. In 
+  addition, we see that there is a considerable gap between household income groups from around 
+  2005 to 2019, and then resumes in 2020, where the difference between the two income levels 
+  starting in 2020 is around 1.28%!
+</p>
 </div>
 <div class="section section-features features">
       <h2 class="features">
         Now let's compare the historical savings rate to the inflation rates
       </h2>
-    <div class='schart'>
+      <div
+      id="vis3"
+      style="display: flex;
+justify-content: center;
+align-items: center;"
+         ></div>
 
-  </div>
+         <script>
+           var secondOne = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/WilliamCWu/VisLab1/main/projdata.csv"
+    },
+    "background": "rgb(242, 243, 245)",
+      "group": {fill: "rgb(242, 243, 245)"},
+    "vconcat": [{"width":900,
+      "mark": {"type": "line","color":"darkcyan","opacity":1},
+      "encoding": {
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Date"},
+          {"field": "SavingsRate", "type": "quantitative", "title": "% Saved","format":".2%"}
+        ],
+        "x": {"field": "Date", "type": "temporal"},
+        "y": {"field": "SavingsRate", "title": "Percent of Income Saved", "type": "quantitative","axis":{"format":".0%"}}
+            }
+            },
+            {"width":900,"mark": {"type": "line","color":"darkkhaki","opacity":1},
+      "encoding": {
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Date"},
+          {"field": "CPI", "type": "quantitative", "title": "CPI Index Unit"}
+        ],
+        "x": {"field": "Date", "type": "temporal"},
+        "y": {"field": "CPI", "title": "CPI Index Unit", "type": "quantitative"}
+            }
+  }]
+};
+vegaEmbed("#vis3", secondOne);
+         </script>
 
+         <p style="color: rgb(27, 114, 212); font-weight: bold; padding-left: 150px; padding-right:150px">
+            The top graph shows the savings rate, and the bottom graph gives a general view about the change in inflation rate in US using CPI (consumer price index).
+            CPI is often used to measure inflation by tracking the changes over time in the prices paid by consumers for a basket of goods and services. By comparing them,
+            we can see clearly that, dispite the inflation rate has been constantly increasing overtime, the average saving rate steadly drops from 1970 to around 2005 and 
+            rise back up slightly after 2005. The dramatic increase in savings rate we see between 2020 to 2021 is largely the result of the distribution of US government 
+            subsidies to US citizens (the two one-thousand check you received last year), so this does not mean that Americans are actually saving more money starting 2020. 
+         </p>
     </div>
   </div>
 

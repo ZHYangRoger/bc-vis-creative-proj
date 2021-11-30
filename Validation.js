@@ -7,7 +7,7 @@ startButton.addEventListener("click", (e) => {
     const name = nameAgeForm.name.value;
     const age = nameAgeForm.age.value;
 
-    if (name == "" || age == "" || parseInt(age) %1 != 0) {
+    if (name == "" || age == "" || parseInt(age) %1 != 0 || age >= 52) {
         loginErrorMsg.style.opacity = 1;
     } else {
         loginErrorMsg.style.opacity = 0;

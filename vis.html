@@ -22,6 +22,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
     <script defer src="thirdChart.js" defer type="module"></script>
+    <script defer src="closerLook.js" defer type="module"></script>
 
     <style media="screen">
       /* Add space between Vega-Embed links  */
@@ -138,6 +139,32 @@
     </p>
 
   </div>
+
+  <div class="section section-features features">
+    <h1>Let's take a closer look</h1>
+    <div class="navBar">
+      <label for="group-by">Select product type</label>
+                    <select id="group-by">
+                        <option value="beef">Beef</option>
+                        <option value="pork">Pork</option>
+                        <option value="gas">Gas</option>
+                        <option value="home">Home</option>
+                    </select> 
+    </div>
+    <br><br><br>
+    <div class="row">
+      <div class="column1">
+        <div class="closerChart">
+
+        </div>
+      </div>
+      <div class="column2">
+        
+      </div>
+    </div>
+    
+  </div>
+
   <div class="section section-features features">
     <div class="container">
         <h2 class="features" style="padding-bottom: 0px;">

@@ -2217,3 +2217,23 @@ html body [data-ca3_iconfont="ETmodules"]::before {
 	animation-delay:0s;
 	-webkit-animation-delay:0s; /* Safari 和 Chrome */
 }
+
+select{
+    width:400px;
+    font-size: 17px;
+}
+
+.navBar{
+    margin-top:15px;
+}
+
+.column1 {
+    width: 50%;
+    float: left;
+    height: 100%;
+}
+.column2 {
+    width: 50%;
+    float: right;
+    height: 100%;}
+

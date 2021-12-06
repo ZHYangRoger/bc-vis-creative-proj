@@ -177,8 +177,77 @@
         // Assign the specification to a local variable vlSpec.
         
 
-var vlSpec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        var vlSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/WilliamCWu/VisLab1/main/projdata.csv"
+    },
+    "background": "rgb(242, 243, 245)",
+    "repeat": {
+      "layer": ["PctBeef", "PctPork", "PctGas", "PctHome","PctChInL","PctChInM"]
+    },
+    "spec": {
+      "width": 900,
+      "height": 500,
+      "mark": "line",
+      "encoding": {
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Date"},
+          {"field": {"repeat": "layer"}, "type": "quantitative", "title": "% change"}
+        ],
+        "x": {"field": "Date", "type": "temporal"},
+        "y": {"field": {"repeat": "layer"}, "title": "Percentage Change (%) from the Previous Year", "type": "quantitative"},
+        "color": {
+            "datum": {"repeat": "layer"},
+          
+          "type": "nominal",
+          "legend": {"labelExpr": "{'PctBeef': 'Beef', 'PctPork': 'Pork', 'PctGas': 'Gas', 'PctHome': 'Home','PctChInL':'Lowest 20% Income','PctChInM':'Middle 20% Income'}[datum.label]"}
+        },
+        "opacity":{
+           "datum": {"repeat": "layer"},
+           "scale":{"domain": ["PctBeef", "PctPork", "PctGas", "PctHome"],"range":["0.5","0.5"]},
+           "legend":null
+        },
+        "strokeDash":{"datum":{"repeat":"layer"},
+        "scale":{"domain":["PctBeef", "PctPork", "PctGas", "PctHome"],"range":[[5,4]]}},
+        "strokeWidth":{"datum": {"repeat": "layer"},
+           "scale":{"domain": ["PctChInL", "PctChInM"],"range":["2.5", "2.5"]},
+           "legend":null}
+      }
+      
+    }
+};
+  
+        // Embed the visualization in the container with id `vis`
+        vegaEmbed("#vis2", vlSpec);
+      </script> <br><br>
+</div>
+<p style="padding-left: 150px; padding-right:150px">
+  <!-- Second graph -->
+  Similar to the above graph, this graph shows the price percent change for the four commodities, 
+  however there are two new lines. The yellow line represents the middle 20% income, and the green 
+  line represents the lower 20% income. With the combination of all of these lines, it is easy to 
+  see how income clearly is unable to keep up with the price changes of homes in America. In fact, 
+  both the middle and lower 20% income fall remain lower than houses starting around 1980. Around 
+  this time, the United States had a significant population increase since 1970 (according 
+  to the 1980 census), which may have contributed to the low income percent change.
+</p> <br>
+
+</div>
+<div class="section section-features features">
+      <h2 class="features">
+        Now let's compare the historical savings rate to the inflation rates
+      </h2>
+      <div
+      id="vis3"
+      style="display: flex;
+justify-content: center;
+align-items: center;"
+         ></div>
+
+         <script>
+           var secondOne = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
     "url": "https://raw.githubusercontent.com/WilliamCWu/VisLab1/main/projdata.csv"
     },
@@ -211,72 +280,6 @@ var vlSpec = {
             ],
   "resolve": {"scale": {"x": "shared"}}
 };
-  
-        // Embed the visualization in the container with id `vis`
-        vegaEmbed("#vis2", vlSpec);
-      </script> <br><br>
-</div>
-<p style="padding-left: 150px; padding-right:150px">
-  <!-- Second graph -->
-  Similar to the above graph, this graph shows the price percent change for the four commodities, 
-  however there are two new lines. The yellow line represents the middle 20% income, and the green 
-  line represents the lower 20% income. With the combination of all of these lines, it is easy to 
-  see how income clearly is unable to keep up with the price changes of homes in America. In fact, 
-  both the middle and lower 20% income fall remain lower than houses starting around 1980. Around 
-  this time, the United States had a significant population increase since 1970 (according 
-  to the 1980 census), which may have contributed to the low income percent change.
-</p> <br>
-<p style="color: rgb(27, 114, 212); font-weight: bold; padding-left: 150px; padding-right:150px">
-  Around 
-  this time, the United States had a significant population increase since 1970 (according 
-  to the 1980 census), which may have contributed to the low income percent change. However, there 
-  is a (slow) general income increase throughout the years <i>after</i> the Great Recession. In 
-  addition, we see that there is a considerable gap between household income groups from around 
-  2005 to 2019, and then resumes in 2020, where the difference between the two income levels 
-  starting in 2020 is around 1.28%!
-</p>
-</div>
-<div class="section section-features features">
-      <h2 class="features">
-        Now let's compare the historical savings rate to the inflation rates
-      </h2>
-      <div
-      id="vis3"
-      style="display: flex;
-justify-content: center;
-align-items: center;"
-         ></div>
-
-         <script>
-           var secondOne = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {
-    "url": "https://raw.githubusercontent.com/WilliamCWu/VisLab1/main/projdata.csv"
-    },
-    "background": "rgb(242, 243, 245)",
-      "group": {fill: "rgb(242, 243, 245)"},
-    "vconcat": [{"width":900,
-      "mark": {"type": "line","color":"darkcyan","opacity":1},
-      "encoding": {
-        "tooltip": [
-          {"field": "Date", "type": "temporal", "title": "Date"},
-          {"field": "SavingsRate", "type": "quantitative", "title": "% Saved","format":".2%"}
-        ],
-        "x": {"field": "Date", "type": "temporal"},
-        "y": {"field": "SavingsRate", "title": "Percent of Income Saved", "type": "quantitative","axis":{"format":".0%"}}
-            }
-            },
-            {"width":900,"mark": {"type": "line","color":"darkkhaki","opacity":1},
-      "encoding": {
-        "tooltip": [
-          {"field": "Date", "type": "temporal", "title": "Date"},
-          {"field": "CPI", "type": "quantitative", "title": "CPI Index Unit"}
-        ],
-        "x": {"field": "Date", "type": "temporal"},
-        "y": {"field": "CPI", "title": "CPI Index Unit", "type": "quantitative"}
-            }
-  }]
-};
 vegaEmbed("#vis3", secondOne);
          </script>
 
@@ -298,6 +301,11 @@ vegaEmbed("#vis3", secondOne);
     <p>
       However, depending on if you think inflation is here to stay or not, the answer will also change. If you think inflation will continue, you should lower your saving rate and invest as much as possible. You should also buy durable products instead of rent. On the contrary, if you think inflation is not here to stay, you should postpone big-ticket purchases. Uncerntantities like this would also affect if you'd go with a fixed-rate mortgage or an adjustable-rate mortgage. 
     </p>
+  </div>
+
+  <div>
+    <br><br>
+    <a href="about.html" class="button">Learn more about this project!</a>
   </div>
 
   <footer class="footer">

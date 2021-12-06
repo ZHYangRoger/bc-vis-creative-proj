@@ -440,7 +440,7 @@ async function main() {
                     returnText1 = "2014 - 2016: oil gas plunge. The fundamental reason for the decline in world petroleum prices in "
                 }
                 else if (numm == 4) {
-                    returnText1 = "2020 - present: oil gas rising back up due to COVID. Lockdowns -> companies shifted to remote work, demand for "
+                    returnText1 = "2020 - present: oil gas rising back up due to COVID. Lockdowns -> companies shifted to remote work, "
                 }
                 break;
             case "p":
@@ -488,7 +488,7 @@ async function main() {
                     returnText2 = "2014 was an oversupply of petroleum compared to demand."
                 }
                 else if (numm == 4) {
-                    returnText2 = "gas decreased. Oil refiners cut their gas production. The drop in supply resulted in an increase in gas price."
+                    returnText2 = "demand for gas decreased. Oil refiners cut their gas production. Drop in supply -> increase in gas price."
                 }
                 break;
             case "p":

@@ -175,45 +175,41 @@
     </div>
     <script>
         // Assign the specification to a local variable vlSpec.
-        var vlSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {
-      "url": "https://raw.githubusercontent.com/WilliamCWu/VisLab1/main/projdata.csv"
+        
+
+var vlSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/WilliamCWu/VisLab1/main/projdata.csv"
     },
     "background": "rgb(242, 243, 245)",
-    "repeat": {
-      "layer": ["PctBeef", "PctPork", "PctGas", "PctHome","PctChInL","PctChInM"]
-    },
-    "spec": {
-      "width": 900,
-      "height": 500,
-      "mark": "line",
+    "vconcat": [{"width":900
+  , "selection": {
+    "grid": {
+      "type": "interval", "bind": "scales"
+    }
+  },"mark": {"type": "line","color":"darkkhaki","opacity":1},
       "encoding": {
         "tooltip": [
           {"field": "Date", "type": "temporal", "title": "Date"},
-          {"field": {"repeat": "layer"}, "type": "quantitative", "title": "% change"}
+          {"field": "CPIPct", "type": "quantitative", "title": "CPI Index Unit"}
         ],
         "x": {"field": "Date", "type": "temporal"},
-        "y": {"field": {"repeat": "layer"}, "title": "Percentage Change (%) from the Previous Year", "type": "quantitative"},
-        "color": {
-            "datum": {"repeat": "layer"},
-          
-          "type": "nominal",
-          "legend": {"labelExpr": "{'PctBeef': 'Beef', 'PctPork': 'Pork', 'PctGas': 'Gas', 'PctHome': 'Home','PctChInL':'Lowest 20% Income','PctChInM':'Middle 20% Income'}[datum.label]"}
-        },
-        "opacity":{
-           "datum": {"repeat": "layer"},
-           "scale":{"domain": ["PctBeef", "PctPork", "PctGas", "PctHome"],"range":["0.5","0.5"]},
-           "legend":null
-        },
-        "strokeDash":{"datum":{"repeat":"layer"},
-        "scale":{"domain":["PctBeef", "PctPork", "PctGas", "PctHome"],"range":[[5,4]]}},
-        "strokeWidth":{"datum": {"repeat": "layer"},
-           "scale":{"domain": ["PctChInL", "PctChInM"],"range":["2.5", "2.5"]},
-           "legend":null}
-      }
-      
-    }
+        "y": {"field": "CPIPct", "title": "CPI Index Unit", "type": "quantitative"}
+            }
+  },{"width":900,
+      "mark": {"type": "line","color":"darkcyan","opacity":1},
+      "encoding": {
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Date"},
+          {"field": "SavingsRate", "type": "quantitative", "title": "% Saved","format":".2%"}
+        ],
+        "x": {"field": "Date", "type": "temporal"},
+        "y": {"field": "SavingsRate", "title": "Percent of Income Saved", "type": "quantitative","axis":{"format":".0%"}}
+            }
+            }
+            ],
+  "resolve": {"scale": {"x": "shared"}}
 };
   
         // Embed the visualization in the container with id `vis`

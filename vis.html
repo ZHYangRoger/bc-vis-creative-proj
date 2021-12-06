@@ -131,12 +131,6 @@
         percent change compared to the other three commodities. In addition, gas prices are the least 
         consistent, and pork price percent change has remained the most stable out of the four.
     </p> <br>
-    <p style="color: rgb(27, 114, 212); font-weight: bold; padding-left: 150px; padding-right:150px">
-      The instability of the prices we see after 2008 may have been the result of the 2008 financial crisis, which was 
-            followed by the Great Recession, and it had heavy, negative impacts on the gas and oil prices.
-            Pork price percent change has remained the most stable out of the four, and beef has had a 
-            relatively smooth increase.
-    </p>
 
   </div>
 
@@ -153,14 +147,14 @@
     </div>
     <br><br><br>
     <div class="row">
-      <div class="column1">
+      <div class="column11">
         <div class="closerChart">
 
         </div>
       </div>
-      <div class="column2">
+      <div class="column22">
         <div class="rects">
-          
+
         </div>
       </div>
     </div>
@@ -187,7 +181,6 @@
       "url": "https://raw.githubusercontent.com/WilliamCWu/VisLab1/main/projdata.csv"
     },
     "background": "rgb(242, 243, 245)",
-      "group": {fill: "rgb(242, 243, 245)"},
     "repeat": {
       "layer": ["PctBeef", "PctPork", "PctGas", "PctHome","PctChInL","PctChInM"]
     },
@@ -210,12 +203,13 @@
         },
         "opacity":{
            "datum": {"repeat": "layer"},
-           "scale":{"domain": ["PctBeef", "PctPork", "PctGas", "PctHome","PctChInL","PctChInM"],"range":["0.1","1"]},
+           "scale":{"domain": ["PctBeef", "PctPork", "PctGas", "PctHome"],"range":["0.5","0.5"]},
            "legend":null
         },
+        "strokeDash":{"datum":{"repeat":"layer"},
+        "scale":{"domain":["PctBeef", "PctPork", "PctGas", "PctHome"],"range":[[5,4]]}},
         "strokeWidth":{"datum": {"repeat": "layer"},
-           "scale":{"domain": ["PctBeef", "PctPork", "PctGas", "PctHome"],"range":["4","4.1"]},
-           "scale":{"domain": ["PctChInL", "PctChInM"],"range":["4", "4.1"]},
+           "scale":{"domain": ["PctChInL", "PctChInM"],"range":["2.5", "2.5"]},
            "legend":null}
       }
       

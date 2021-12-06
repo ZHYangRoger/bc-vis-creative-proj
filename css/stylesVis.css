@@ -2237,3 +2237,14 @@ select{
     float: right;
     height: 100%;}
 
+
+    .column11 {
+        width: 40%;
+        float: left;
+        height: 100%;
+    }
+    .column22 {
+        width: 60%;
+        float: right;
+        height: 100%;}
+    
